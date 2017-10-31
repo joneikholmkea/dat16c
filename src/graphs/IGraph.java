@@ -38,7 +38,7 @@ public boolean addEdge(int u, int v);
 
 
 ///** Obtain a depth-first search tree starting from v */
-public AbstractGraph<V>.Tree dfs(int v);
+//public AbstractGraph<V>.Tree dfs(int v);
 //
 ///** Obtain a breadth-first search tree starting from v */
 //
