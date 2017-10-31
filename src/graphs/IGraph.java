@@ -30,7 +30,7 @@ public boolean addVertex(V vertex);
 
 /** Add an edge to the graph */
 
-public boolean addEdge(AbstractGraph.Edge edge);
+//public boolean addEdge(AbstractGraph.Edge edge);
 
 
 public boolean addEdge(int u, int v);

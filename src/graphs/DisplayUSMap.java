@@ -1,7 +1,5 @@
 package graphs;
 
-import graphs.IGraph;
-import graphs.UnweightedGraph;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -12,7 +10,7 @@ public class DisplayUSMap extends Application {
     public void start(Stage primaryStage) throws Exception {
         City[] vertices = getVertices();
         int[][] edges = getEdges();
-        IGraph<City> graph = new UnweightedGraph<>(vertices, edges);
+        IGraph<City> graph = new Graph<City>(vertices, edges);
          // Create a scene and place it in the stage
          Scene scene = new Scene(new GraphView(graph), 750, 450);
          primaryStage.setTitle("DisplayUSMap"); // Set the stage title
