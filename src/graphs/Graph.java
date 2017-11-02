@@ -31,7 +31,7 @@ public class Graph<V> implements IGraph<V>{
 
     @Override
     public V getVertex(int index) {
-        if(index>0 && index < vertices.size()) {
+        if(index >= 0 && index < vertices.size()) {
             return vertices.get(index);
         }
         return null;
