@@ -1,9 +1,6 @@
 package startgraph;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Graph {
 
@@ -87,5 +84,86 @@ public class Graph {
             this.searchOrder = searchOrder;
             this.parent = parent;
         }
+
+        public String toString(){
+            String out = "DFS result: \n";
+            out += searchOrder.toString() + "\n";
+            for (int i = 0; i < parent.length; i++) {
+                out += "vertex " + i + " has parent: " + parent[i] + "\n";
+            }
+            return out;
+        }
+    }
+
+    public Stack<Vertex> dijkstra(int source, int target){
+        Set<Integer> Q = new HashSet<>();
+        int[] dist = new int[vertices.size()];
+        int[] prev = new int[vertices.size()];
+        for (int i = 0; i < vertices.size(); i++) {
+            dist[i] = Integer.MAX_VALUE;
+            prev[i] = -1;
+            Q.add(i);
+        }
+        dist[source] = 0;
+        while(! Q.isEmpty()){
+            int u = getLeastDistanceVertex(Q, dist);
+            Q.remove(u);
+
+            for (Integer v : getNeighbors(u)) {
+                int alt = dist[u] + getEdgeFromUtoV(u,v).weight;
+                if(alt < dist[v]){
+                    dist[v] = alt;
+                    prev[v] = u;
+                }
+            }
+        }
+        return null;
+    }
+
+    private Edge getEdgeFromUtoV(int u, int v){
+        List<Edge> edgeList = edgeMap.get(getVertex(u));
+        for (Edge edge : edgeList) {
+            if(edge.startVertex == u && edge.endVertex == v){
+                return edge;
+            }
+        }
+        return null;
+    }
+
+
+    private int getLeastDistanceVertex(Set<Integer> q, int[] dist){
+        int low = Integer.MAX_VALUE;
+        int lowIndex = -1;
+        for (Integer vertex : q) {
+            if(dist[vertex] < low){
+                low = dist[vertex];
+                lowIndex = vertex;
+            }
+        }
+        return lowIndex;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
