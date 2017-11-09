@@ -7,8 +7,9 @@ public class Graph {
     private List<Vertex> vertices = new ArrayList<>();
     //  find en måde at gemme Edge objekter
     private Map<Vertex, List<Edge>> edgeMap = new HashMap<>();
+    private int size;
 
-    private List<Integer> getNeighbors(int vertex){
+    List<Integer> getNeighbors(int vertex){
         List<Integer> list = new ArrayList<>();
         List<Edge> edgeList = edgeMap.get(getVertex(vertex));
         for (Edge edge : edgeList) {
@@ -36,7 +37,7 @@ public class Graph {
     public void addEdge(Edge edge){
         //1. find en måde at gemme Edge objekter. DONE
         //2. Lav et NYT Edge objekt i denne metode, og gem
-        Edge edge2 = new Edge(edge.startVertex, edge.endVertex);
+        Edge edge2 = new Edge(edge.startVertex, edge.endVertex, edge.weight);
         Vertex startVertex = getVertex(edge.startVertex);
         edgeMap.get(startVertex).add(edge2);
     }
@@ -74,6 +75,11 @@ public class Graph {
         }
     }
 
+    public int getSize() {
+
+        return vertices.size();
+    }
+
     public class Tree{
         int root;
         List<Integer> searchOrder;
@@ -108,14 +114,18 @@ public class Graph {
         while(! Q.isEmpty()){
             int u = getLeastDistanceVertex(Q, dist);
             Q.remove(u);
-
             for (Integer v : getNeighbors(u)) {
                 int alt = dist[u] + getEdgeFromUtoV(u,v).weight;
+                System.out.println("alt:"  + alt);
                 if(alt < dist[v]){
                     dist[v] = alt;
                     prev[v] = u;
                 }
             }
+        }
+
+        for (int i = 0; i < dist.length; i++) {
+            System.out.println("distance fra source til vertex i:" + i + " dist:"+dist[i]);
         }
         // hvad har vi opnået nu?
         // LAVE en Stack, som trin for trin viser vejen

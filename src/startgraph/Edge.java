@@ -12,9 +12,4 @@ public class Edge {
         this.weight = weight;
     }
 
-
-    public Edge(int startVertex, int endVertex) {
-        this.startVertex = startVertex;
-        this.endVertex = endVertex;
-    }
 }
