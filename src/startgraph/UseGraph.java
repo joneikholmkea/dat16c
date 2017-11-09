@@ -18,5 +18,6 @@ public class UseGraph {
         graph.addEdge (new Edge(0,3, 1663));
         graph.addEdge (new Edge(3,0,1663));
         System.out.println(graph.dfs(2));
+        System.out.println(graph.dijkstra(0,2));
     }
 }

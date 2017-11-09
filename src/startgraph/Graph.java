@@ -117,7 +117,23 @@ public class Graph {
                 }
             }
         }
-        return null;
+        // hvad har vi opnået nu?
+        // LAVE en Stack, som trin for trin viser vejen
+        return getShortestPath( prev , target);
+
+    }
+
+    private Stack<Vertex> getShortestPath(int[] prev, int target) {
+        Stack<Vertex> stack = new Stack<>();
+        stack.push(getVertex(target));
+        while(prev[target] > -1){
+            // 1. tilføj prev til Stack
+            target = prev[target];
+            // 2. overskrive target
+            stack.push(getVertex(target));
+        }
+
+        return stack;
     }
 
     private Edge getEdgeFromUtoV(int u, int v){
