@@ -34,12 +34,23 @@ public class Graph {
         return null;
     }
 
-    public void addEdge(Edge edge){
+//    public void addEdge(Edge edge){
+//        //1. find en måde at gemme Edge objekter. DONE
+//        //2. Lav et NYT Edge objekt i denne metode, og gem
+//        Edge edge2 = new Edge(edge.startVertex, edge.endVertex, edge.weight);
+//        Vertex startVertex = getVertex(edge.startVertex);
+//        edgeMap.get(startVertex).add(edge2);
+//    }
+
+    public void addEdge(Edge edge){ // automatisk tilføj modsat retning
         //1. find en måde at gemme Edge objekter. DONE
         //2. Lav et NYT Edge objekt i denne metode, og gem
         Edge edge2 = new Edge(edge.startVertex, edge.endVertex, edge.weight);
         Vertex startVertex = getVertex(edge.startVertex);
+        Edge edge3 = new Edge(edge.endVertex, edge.startVertex , edge.weight);
+        Vertex endVertex = getVertex(edge.endVertex);
         edgeMap.get(startVertex).add(edge2);
+        edgeMap.get(endVertex).add(edge3);
     }
 
     public void printGraph(){
