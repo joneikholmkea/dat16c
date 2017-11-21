@@ -27,14 +27,4 @@ public class LambdaExerciseSetup {
         System.out.println(binaryOperator(students.get(1), students.get(2)));
     }
 
-
-    BinaryOperator<Student> binaryOperator(Student student1, Student student2){
-
-        BinaryOperator<Student> newestStudent = (s1, s2) -> {
-            if(s1.yearStarted > s2.yearStarted) return s1;
-            return s2;
-
-        };
-        return newestStudent;
-    }
 }
