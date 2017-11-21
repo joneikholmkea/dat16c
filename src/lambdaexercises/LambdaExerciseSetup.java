@@ -24,7 +24,6 @@ public class LambdaExerciseSetup {
         students.add(new Student("Oscar", "Oscar@stud.dk", 2017, false));
         students.add(new Student("William", "William@stud.dk", 2016, true));
 
-        System.out.println(binaryOperator(students.get(1), students.get(2)));
     }
 
 }
