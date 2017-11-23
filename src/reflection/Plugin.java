@@ -3,9 +3,12 @@ package reflection;
 import javax.tools.JavaCompiler;
 import javax.tools.ToolProvider;
 import java.io.File;
+import java.lang.reflect.Field;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Plugin {
 
@@ -19,7 +22,7 @@ public class Plugin {
 
     static int aNUmber = 3;
 
-    public Plugin(){
+    public Plugin(String tekst){
 
         //1. få den rigtige path
         String rootPath = System.getProperty("user.dir");
@@ -52,6 +55,34 @@ public class Plugin {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InstantiationException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Plugin(){
+        addGetters("Person");
+    }
+
+    public void addGetters(String className){
+
+        try {
+            Class theClass = Class.forName("reflection."+className);
+            if(theClass!= null){
+                System.out.println("OK, klassen hedder: " + theClass.getSimpleName());
+                Field[] fields =  theClass.getDeclaredFields();
+                List<String> methods = new ArrayList<>();
+                for (Field field : fields) {
+                    System.out.println(field.toString());
+                    String methodText = "public ";
+                    methodText += field.getType().getSimpleName()+ " get" + field.getName()+"()" + "{\n";
+                    methodText += " return " + field.getName() + ";\n";
+                    methodText += "}\n";
+                    methods.add(methodText);
+                }
+                methods.stream().forEach(System.out::println);
+                // indlæs Person.java filen til en List
+            }
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
