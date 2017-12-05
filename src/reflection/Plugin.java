@@ -38,7 +38,8 @@ public class Plugin {
         //2. Hent en ClassLoader, som kan loade en ny klasse ind i dette kørende program:
         try {
             URLClassLoader classLoader = URLClassLoader.newInstance(new URL[]{root.toURI().toURL()});
-            Class clazz =  Class.forName("reflection.Person", true, classLoader);
+            //Class clazz =  Class.forName("reflection.Person", true, classLoader);
+            Class clazz =  Class.forName("reflection.Person");
             if(clazz != null){
                 System.out.println("det lykkedes!");
                 System.out.println("Navn på klasse: " + clazz.getSimpleName());
